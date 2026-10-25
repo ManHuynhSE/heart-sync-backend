@@ -50,7 +50,13 @@ export class ProfileService {
       where: { userId: user.id },
     });
     const data = {
-      ...dto,
+      ...(dto.name !== undefined ? { name: dto.name } : {}),
+      ...(dto.age !== undefined ? { age: dto.age } : {}),
+      ...(dto.occupation !== undefined ? { occupation: dto.occupation } : {}),
+      ...(dto.bio !== undefined ? { bio: dto.bio } : {}),
+      ...(dto.interests !== undefined ? { interests: dto.interests } : {}),
+      ...(dto.languages !== undefined ? { languages: dto.languages } : {}),
+      ...(dto.photoUrls !== undefined ? { photoUrls: dto.photoUrls } : {}),
       completion: this.calculateCompletion({ ...current, ...dto }),
     };
 
